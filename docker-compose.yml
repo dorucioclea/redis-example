@@ -19,14 +19,14 @@ services:
       - 6379
     volumes:
       - redis_data:/data
-    entrypoint: redis-server --appendonly yes
+    entrypoint: redis-server --appendonly yes --requirepass yourpassword
     restart: unless-stopped
     networks:
       - internal
   redis-commander:
     container_name: redis-commander
     environment:
-      - REDIS_HOSTS=local:redis:6379
+      - REDIS_HOSTS=local:redis:6379:0:yourpassword
       - HTTP_USER=admin
       - HTTP_PASSWORD=passwd
     hostname: redis-commander
