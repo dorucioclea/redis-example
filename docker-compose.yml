@@ -13,10 +13,12 @@ volumes:
 services:
   redis:
     container_name: redis
-    image: redis
+    image: redis:6.0-rc1
     expose:
       - 6379
     volumes:
       - redis_data:/data
     entrypoint: redis-server --appendonly yes
     restart: unless-stopped
+    networks:
+      - internal
