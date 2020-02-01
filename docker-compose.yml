@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  internal:
+    external: false # Create the volume if it doesn't exist
+    name: infrastructure_network
+
+volumes:
+  redis_data:
+    external: false # Create the volume if it doesn't exist
+    name: redis_data
+
+services:
+  redis:
+    container_name: redis
+    image: redis
+    expose:
+      - 6379
+    volumes:
+      - redis_data:/data
+    entrypoint: redis-server --appendonly yes
+    restart: unless-stopped
