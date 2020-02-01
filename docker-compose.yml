@@ -12,6 +12,7 @@ volumes:
 
 services:
   redis:
+    hostname: redis
     container_name: redis
     image: redis:6.0-rc1
     expose:
